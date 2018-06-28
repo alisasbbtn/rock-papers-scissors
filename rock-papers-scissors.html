@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+    <script>
+        let rock = 'rock';
+        let paper = 'paper';
+        let scissors = 'scissors';
+
+        function getComputerSelection() {
+            let random = Math.floor(Math.random() * 3);
+            switch (random) {
+                case 0:
+                    return rock;
+                case 1:
+                    return paper;
+                case 2:
+                    return scissors;
+            }
+        }
+
+        function getPlayerSelection() {
+            // TODO: Check for correct input
+            return prompt('Your turn').toLowerCase();
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection === rock) {
+                switch (computerSelection) {
+                    case paper:
+                        return false;
+                    case scissors:
+                        return true;
+                }
+            } else if (playerSelection === paper) {
+                switch (computerSelection) {
+                    case rock:
+                        return true;
+                    case scissors:
+                        return false;
+                }
+            } else if (playerSelection === scissors) {
+                switch (computerSelection) {
+                    case rock:
+                        return false;
+                    case paper:
+                        return true;
+                }
+            }
+        }
+
+        function showResult(isWon, playerSelection, computerSelection) {
+            let result;
+
+            if (isWon) {
+                result = 'You won! ' + playerSelection + ' beats ' + computerSelection;
+            } else if (isWon === false) {
+                result = 'You lose! ' + computerSelection + ' beats ' + playerSelection;
+            } else {
+                result = 'Tied! Both of you choose ' + playerSelection;
+            }
+
+            return result;
+        }
+
+        function showScore(playerScore, computerScore) {
+            let result;
+
+            if (playerScore > computerScore) {
+                result = 'You won!';
+            } else if (playerScore < computerScore) {
+                result = 'You lose!';
+            } else {
+                result = 'Tied up!';
+            }
+
+            result += ' ' + playerScore + ':' + computerScore;
+            return result;
+        }
+
+        function game() {
+            let rounds = [1, 2, 3, 4, 5];
+            let playerScore = 0;
+            let computerScore = 0;
+
+            rounds.forEach(function (i) {
+                let playerSelection = getPlayerSelection();
+                let computerSelection = getComputerSelection();
+
+                let isPlayerWon = playRound(playerSelection, computerSelection);
+
+                if (isPlayerWon)
+                    playerScore++;
+                else if (isPlayerWon === false)
+                    computerScore++;
+
+                console.log(showResult(isPlayerWon, playerSelection, computerSelection));
+            });
+
+            console.log(showScore(playerScore, computerScore));
+        }
+    </script>
+</body>
+
+</html>
