@@ -53,12 +53,12 @@
             }
         }
 
-        function showResult(isWon, playerSelection, computerSelection) {
+        function showResult(win, playerSelection, computerSelection) {
             let result;
 
-            if (isWon) {
-                result = 'You won! ' + playerSelection + ' beats ' + computerSelection;
-            } else if (isWon === false) {
+            if (win) {
+                result = 'You win! ' + playerSelection + ' beats ' + computerSelection;
+            } else if (win === false) {
                 result = 'You lose! ' + computerSelection + ' beats ' + playerSelection;
             } else {
                 result = 'Tied! Both of you choose ' + playerSelection;
@@ -71,7 +71,7 @@
             let result;
 
             if (playerScore > computerScore) {
-                result = 'You won!';
+                result = 'You win!';
             } else if (playerScore < computerScore) {
                 result = 'You lose!';
             } else {
@@ -91,14 +91,14 @@
                 let playerSelection = getPlayerSelection();
                 let computerSelection = getComputerSelection();
 
-                let isPlayerWon = playRound(playerSelection, computerSelection);
+                let win = playRound(playerSelection, computerSelection);
 
-                if (isPlayerWon)
+                if (win)
                     playerScore++;
-                else if (isPlayerWon === false)
+                else if (win === false)
                     computerScore++;
 
-                console.log(showResult(isPlayerWon, playerSelection, computerSelection));
+                console.log(showResult(win, playerSelection, computerSelection));
             });
 
             console.log(showScore(playerScore, computerScore));
